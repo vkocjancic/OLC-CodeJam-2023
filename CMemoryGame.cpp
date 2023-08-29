@@ -65,31 +65,21 @@ void CMemoryGame::DoSplashScreen(float fElapsedTime)
 	_fStateTime += fElapsedTime;
 
 	olc::vf2d vPosBtnNewGame = { ScreenWidth() / 2.0f - 100.0f, ScreenHeight() / 2.0f - 30.0f };
-	olc::vf2d vSizeBtn = { 200.0f, 60.0f };
+	olc::vf2d vSizeBtn = { 250.0f, 60.0f };
 
-	bool bBtnNewGameFocus = false;
-	if (GetMouse(0).bReleased)
+	_btnNewGame.RecalcButton("New game", vPosBtnNewGame, vSizeBtn);
+	if (_btnNewGame.IsClicked(this))
 	{
-		olc::vi2d vPosMouse = GetMousePos();
-		if (vPosMouse.x > vPosBtnNewGame.x && vPosMouse.x < (vPosBtnNewGame.x + vSizeBtn.x)
-			&& vPosMouse.y > vPosBtnNewGame.y && vPosMouse.y < (vPosBtnNewGame.y + vSizeBtn.y))
-		{
-			_nState = STATE_GAME_INIT;
-			_fStateTime = 0.0f;
-		}
+		_nState = STATE_GAME_INIT;
+		_fStateTime = 0.0f;
 	}
-	else
+
+	olc::vf2d vPosBtnHighScores = { vPosBtnNewGame.x, vPosBtnNewGame.y + vSizeBtn.y + 15.0f };
+	_btnHighScores.RecalcButton("High scores", vPosBtnHighScores, vSizeBtn);
+	if (_btnHighScores.IsClicked(this))
 	{
-		olc::vi2d vPosMouse = GetMousePos();
-		if (vPosMouse.x > vPosBtnNewGame.x && vPosMouse.x < (vPosBtnNewGame.x + vSizeBtn.x)
-			&& vPosMouse.y > vPosBtnNewGame.y && vPosMouse.y < (vPosBtnNewGame.y + vSizeBtn.y))
-		{
-			bBtnNewGameFocus = true;
-		}
-		else
-		{
-			bBtnNewGameFocus = false;
-		}
+		_nState = STATE_HIGHSCORE_INIT;
+		_fStateTime = 0.0f;
 	}
 
 	// draw on screen
@@ -97,14 +87,8 @@ void CMemoryGame::DoSplashScreen(float fElapsedTime)
 
 	DrawStringDecal({ ScreenWidth() / 2.0f - 400.0f, ScreenHeight() / 2.0f - 300.0f }, "MEMORY - 3 of a kind", olc::MAGENTA, { 5.0f, 5.0f });
 
-	if (bBtnNewGameFocus)
-	{
-		DrawButton(vPosBtnNewGame, vSizeBtn, "New game", olc::GREEN, olc::WHITE);
-	}
-	else 
-	{
-		DrawButton(vPosBtnNewGame, vSizeBtn, "New game", olc::DARK_GREEN, olc::WHITE);
-	}
+	_btnNewGame.DrawSelf(this);
+	_btnHighScores.DrawSelf(this);
 }
 
 void CMemoryGame::DoGame(float fElapsedTime)
@@ -364,31 +348,13 @@ void CMemoryGame::DoHighScore(float fElapsedTime)
 	_fStateTime += fElapsedTime;
 
 	olc::vf2d vPosBtnMainMenu = { ScreenWidth() / 2.0f - 100.0f, ScreenHeight() / 2.0f + 200.0f };
-	olc::vf2d vSizeBtn = { 210.0f, 60.0f };
+	olc::vf2d vSizeBtn = { 250.0f, 60.0f };
 
-	bool bBtnMainMenu = false;
-	if (GetMouse(0).bReleased)
+	_btnMainMenu.RecalcButton("Main menu", vPosBtnMainMenu, vSizeBtn);
+	if (_btnMainMenu.IsClicked(this))
 	{
-		olc::vi2d vPosMouse = GetMousePos();
-		if (vPosMouse.x > vPosBtnMainMenu.x && vPosMouse.x < (vPosBtnMainMenu.x + vSizeBtn.x)
-			&& vPosMouse.y > vPosBtnMainMenu.y && vPosMouse.y < (vPosBtnMainMenu.y + vSizeBtn.y))
-		{
-			_nState = STATE_SPLASH;
-			_fStateTime = 0.0f;
-		}
-	}
-	else
-	{
-		olc::vi2d vPosMouse = GetMousePos();
-		if (vPosMouse.x > vPosBtnMainMenu.x && vPosMouse.x < (vPosBtnMainMenu.x + vSizeBtn.x)
-			&& vPosMouse.y > vPosBtnMainMenu.y && vPosMouse.y < (vPosBtnMainMenu.y + vSizeBtn.y))
-		{
-			bBtnMainMenu = true;
-		}
-		else
-		{
-			bBtnMainMenu = false;
-		}
+		_nState = STATE_SPLASH;
+		_fStateTime = 0.0f;
 	}
 
 	// render
@@ -408,14 +374,7 @@ void CMemoryGame::DoHighScore(float fElapsedTime)
 		vPos.y += 30;
 	}
 
-	if (bBtnMainMenu)
-	{
-		DrawButton(vPosBtnMainMenu, vSizeBtn, "Main menu", olc::GREEN, olc::WHITE);
-	}
-	else
-	{
-		DrawButton(vPosBtnMainMenu, vSizeBtn, "Main menu", olc::DARK_GREEN, olc::WHITE);
-	}
+	_btnMainMenu.DrawSelf(this);
 }
 
 

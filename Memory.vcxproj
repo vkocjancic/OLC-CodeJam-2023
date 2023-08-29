@@ -129,13 +129,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CButton.h" />
     <ClInclude Include="CMemoryGame.h" />
     <ClInclude Include="mgconst.h" />
     <ClInclude Include="olcPixelGameEngine.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CButton.cpp" />
     <ClCompile Include="CMemoryGame.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="olcPixelGameEngine.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

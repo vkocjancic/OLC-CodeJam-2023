@@ -3,6 +3,7 @@
 #include <list>
 #include <vector>
 #include "olcPixelGameEngine.h"
+#include "CButton.h"
 
 typedef struct {
 	int nCard;
@@ -44,6 +45,9 @@ private:
 	float _fStateTime;
 	SSCORE _score;
 	std::vector<SHIGHSCORE> _vecHighScores;
+	CButton _btnNewGame;
+	CButton _btnHighScores;
+	CButton _btnMainMenu;
 
 public:
 	CMemoryGame();
