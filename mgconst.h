@@ -3,7 +3,7 @@
 #define MATRIX_ROWS 5
 #define MATRIX_COLS 6
 #define MAX_CARDS 10
-#define RADIUS 20
+#define RADIUS 40
 
 #define REWARD 1000
 #define MAX_HIGH_SCORES 10
