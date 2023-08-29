@@ -380,7 +380,7 @@ void CMemoryGame::DoHighScore(float fElapsedTime)
 
 void CMemoryGame::ResetGame()
 {
-	_vBallStartPos = { ScreenWidth() / 2.0f - 350.0f , ScreenHeight() / 2.0f - 200.0f };
+	_vBallStartPos = { ScreenWidth() / 2.0f - 350.0f , ScreenHeight() / 2.0f - 300.0f };
 	_cnFailedAttempts = 0;
 	_cnSelected = 0;
 	_cnRemoved = 0;
