@@ -149,13 +149,24 @@ void CMemoryGame::DoGame(float fElapsedTime)
 
 		if (bSelectedEqual)
 		{
+			// luck guesses get rewarded. But only until 3 triples are left
 			if (_cnFailedAttempts == 0 && _cnRemoved < (nMatrixSize - 9))
 			{
 				_score.nScore += 10 * REWARD;
 			}
 			else
 			{
-				_score.nScore += REWARD / _cnFailedAttempts;
+				// because you can have lucky guess in last 3 triples...
+				if (_cnFailedAttempts == 0)
+				{
+					_score.nScore += REWARD;
+				}
+				// for everything else, adjust score
+				else
+				{
+					_score.nScore += REWARD / _cnFailedAttempts;
+				}
+				// minimal reward is 1
 				if (_score.nScore == 0) 
 				{
 					_score.nScore = 1;
@@ -164,6 +175,7 @@ void CMemoryGame::DoGame(float fElapsedTime)
 			_cnFailedAttempts = 0;
 			_cnRemoved += _cnSelected;
 
+			// if all balls were removed, end game
 			if (_cnRemoved == nMatrixSize)
 			{
 				_score.nElapsedSeconds = (int)_fStateTime;
@@ -205,6 +217,22 @@ void CMemoryGame::DoGame(float fElapsedTime)
 			{
 				pMtx->bSelected = true;
 				_cnSelected++;
+			}
+		}
+	}
+
+	// check if card must be focused or not
+	if (IsFocused())
+	{
+		olc::vi2d vMousePos = GetMousePos();
+		for (int i = 0; i < nMatrixSize; i++)
+		{
+			SMATRIX* pMtx = &_vecDeskMatrix[i];
+			pMtx->bFocused = false;
+			if (vMousePos.x > pMtx->vPos.x - RADIUS && vMousePos.x < pMtx->vPos.x + RADIUS
+				&& vMousePos.y > pMtx->vPos.y - RADIUS && vMousePos.y < pMtx->vPos.y + RADIUS)
+			{
+				pMtx->bFocused = true;
 			}
 		}
 	}
@@ -252,13 +280,22 @@ void CMemoryGame::DoGame(float fElapsedTime)
 		{
 			continue;
 		}
-		olc::Pixel pxBall = olc::WHITE;
+		olc::Pixel pxBall = olc::DARK_GREY;
 		SCARD card = _vecCards[mtx.ixCard];
 		if (mtx.bSelected)
 		{
 			pxBall = card.px;
+			FillCircle(mtx.vPos, RADIUS, pxBall);
 		}
-		FillCircle(mtx.vPos, RADIUS, pxBall);
+		else if (mtx.bFocused)
+		{
+			pxBall = olc::DARK_YELLOW;
+			DrawCircle(mtx.vPos, RADIUS, pxBall);
+		}
+		else 
+		{
+			DrawCircle(mtx.vPos, RADIUS, pxBall);
+		}
 	}
 }
 
@@ -274,7 +311,7 @@ void CMemoryGame::DoGameEnd(float fElapsedTime)
 
 	int nTotal = _score.nScore + (-10) * _score.nElapsedSeconds;
 	if (nTotal < 0)
-	{
+	{ 
 		nTotal = 0;
 	}
 	std::string sScore = "Score:   " + std::to_string(_score.nScore);
@@ -450,6 +487,7 @@ void CMemoryGame::InitializeMatrix()
 		SMATRIX mtx;
 		mtx.vPos.x = _vBallStartPos.x + ((i % MATRIX_COLS) + 1) * 100.0f;
 		mtx.vPos.y = _vBallStartPos.y + ((i / MATRIX_COLS) + 1) * 100.0f;
+		mtx.bFocused = false;
 		mtx.bSelected = false;
 		mtx.bShow = true;
 

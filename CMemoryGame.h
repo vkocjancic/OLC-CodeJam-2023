@@ -12,6 +12,7 @@ typedef struct {
 
 typedef struct {
 	int ixCard;
+	bool bFocused;
 	bool bSelected;
 	bool bShow;
 	olc::vf2d vPos;

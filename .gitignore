@@ -34,3 +34,6 @@
 # VS Bin folders
 .vs/*
 x64/*
+
+# game files
+hs.dat
