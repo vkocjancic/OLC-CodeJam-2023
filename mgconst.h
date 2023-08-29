@@ -1,0 +1,16 @@
+#pragma once
+
+#define MATRIX_ROWS 5
+#define MATRIX_COLS 6
+#define MAX_CARDS 10
+#define RADIUS 20
+
+#define REWARD 1000
+#define MAX_HIGH_SCORES 10
+
+#define STATE_SPLASH 0
+#define STATE_GAME_INIT 2
+#define STATE_GAME 3
+#define STATE_GAME_END 4
+#define STATE_HIGHSCORE_INIT 254
+#define STATE_HIGHSCORE 255
