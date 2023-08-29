@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# VS Bin folders
+.vs/*
+x64/*
