@@ -18,6 +18,7 @@ CMemoryGame::CMemoryGame()
 bool CMemoryGame::OnUserCreate()
 {	
 	_fStateTime = 0.0f;
+	_sprLogo = std::make_unique<olc::Sprite>("./graphics/logo.png");
 
 	return true;
 }
@@ -64,7 +65,7 @@ void CMemoryGame::DoSplashScreen(float fElapsedTime)
 {
 	_fStateTime += fElapsedTime;
 
-	olc::vf2d vPosBtnNewGame = { ScreenWidth() / 2.0f - 100.0f, ScreenHeight() / 2.0f - 30.0f };
+	olc::vf2d vPosBtnNewGame = { ScreenWidth() / 2.0f - 130.0f, ScreenHeight() / 2.0f };
 	olc::vf2d vSizeBtn = { 250.0f, 60.0f };
 
 	_btnNewGame.RecalcButton("New game", vPosBtnNewGame, vSizeBtn);
@@ -84,8 +85,11 @@ void CMemoryGame::DoSplashScreen(float fElapsedTime)
 
 	// draw on screen
 	Clear(olc::BLACK);
-
-	DrawStringDecal({ ScreenWidth() / 2.0f - 400.0f, ScreenHeight() / 2.0f - 300.0f }, "MEMORY - 3 of a kind", olc::MAGENTA, { 5.0f, 5.0f });
+	
+	// draw logo
+	SetPixelMode(olc::Pixel::MASK); // Dont draw pixels which have any transparency
+	DrawSprite({ ScreenWidth() / 2 - 400, ScreenHeight() / 2 - 300 }, _sprLogo.get());
+	SetPixelMode(olc::Pixel::NORMAL); // Draw all pixels
 
 	_btnNewGame.DrawSelf(this);
 	_btnHighScores.DrawSelf(this);
