@@ -49,6 +49,8 @@ private:
 	CButton _btnHighScores;
 	CButton _btnMainMenu;
 	std::unique_ptr<olc::Sprite> _sprLogo;
+	std::unique_ptr<olc::Sprite> _sprBalls;
+	std::unique_ptr<olc::Decal> _dcalBalls;
 
 public:
 	CMemoryGame();

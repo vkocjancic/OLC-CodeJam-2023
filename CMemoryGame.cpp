@@ -19,6 +19,8 @@ bool CMemoryGame::OnUserCreate()
 {	
 	_fStateTime = 0.0f;
 	_sprLogo = std::make_unique<olc::Sprite>("./graphics/logo.png");
+	_sprBalls = std::make_unique<olc::Sprite>("./graphics/ballsprite.png");
+	_dcalBalls = std::make_unique<olc::Decal>(_sprBalls.get());
 
 	return true;
 }
@@ -27,6 +29,7 @@ bool CMemoryGame::OnUserUpdate(float fElapsedTime)
 {
 	if (_nState == STATE_SPLASH)
 	{
+		ResetGame();
 		DoSplashScreen(fElapsedTime);
 	}
 	else if (_nState == STATE_GAME_INIT)
@@ -259,10 +262,12 @@ void CMemoryGame::DoGame(float fElapsedTime)
 	DrawStringDecal({ ScreenWidth() - 200.0f, 10.0f }, sScore, olc::DARK_GREEN, {1.5f, 1.5f});
 	DrawStringDecal({ 150.0f, 10.0f }, sTime, olc::GREY, { 1.5f, 1.5f });
 
+	SetPixelMode(olc::Pixel::MASK); // Dont draw pixels which have any transparency
 	// draw cards
 	olc::vf2d vBall = { _vBallStartPos.x, _vBallStartPos.x };
 	for (int i = 0; i < nMatrixSize; i++)
 	{
+		olc::vf2d vSourcePos;
 		SMATRIX mtx = _vecDeskMatrix[i];
 		if (!mtx.bShow)
 		{
@@ -272,26 +277,30 @@ void CMemoryGame::DoGame(float fElapsedTime)
 		SCARD card = _vecCards[mtx.ixCard];
 		if (mtx.bSelected)
 		{
+			vSourcePos = { 600, 0 };
 			pxBall = card.px;
-			FillCircle(mtx.vPos, RADIUS, pxBall);
+			
 		}
 		else if (mtx.bFocused)
 		{
-			pxBall = olc::DARK_YELLOW;
-			DrawCircle(mtx.vPos, RADIUS, pxBall);
+			vSourcePos = { 300, 0 };
+			pxBall = olc::YELLOW;
 		}
 		else 
 		{
-			DrawCircle(mtx.vPos, RADIUS, pxBall);
+			vSourcePos = { 0, 0 };
+			pxBall = olc::GREY;
 		}
+		DrawPartialDecal({ mtx.vPos.x - RADIUS, mtx.vPos.y - RADIUS }, { 2 * RADIUS, 2 * RADIUS }, _dcalBalls.get(), vSourcePos, { 300, 300 }, pxBall);
 	}
+	SetPixelMode(olc::Pixel::NORMAL); // Draw all pixels
 }
 
 void CMemoryGame::DoGameEnd(float fElapsedTime)
 {
 	// recalc
 	_fStateTime += fElapsedTime;
-	if (_fStateTime >= 3.0f)
+	if (_fStateTime >= 4.0f)
 	{
 		_fStateTime = 0.0f;
 		_nState = STATE_HIGHSCORE_INIT;

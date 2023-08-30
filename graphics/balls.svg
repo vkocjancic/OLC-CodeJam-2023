@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="balls.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.79375"
+     inkscape:cx="396.85039"
+     inkscape:cy="561.25984"
+     inkscape:window-width="1920"
+     inkscape:window-height="1129"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showgrid="false" />
+  <defs
+     id="defs1">
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter2"
+       x="-0.058681821"
+       y="-0.058681821"
+       width="1.1173636"
+       height="1.1173636">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.81480429"
+         id="feGaussianBlur2" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter2-9"
+       x="-0.058681821"
+       y="-0.058681821"
+       width="1.1173636"
+       height="1.1173636">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.81480429"
+         id="feGaussianBlur2-0" />
+    </filter>
+  </defs>
+  <g
+     inkscape:label="Empty circle layer"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       style="fill:none;fill-opacity:1;stroke:#808080;stroke-width:4;stroke-dasharray:none"
+       id="path1-9"
+       cx="44.689579"
+       cy="43.900002"
+       r="35.833332"
+       inkscape:label="Empty circle"
+       inkscape:export-filename="circle_empty.png"
+       inkscape:export-xdpi="26.854628"
+       inkscape:export-ydpi="26.854628" />
+    <g
+       id="g2"
+       inkscape:label="Highlighted circle">
+      <circle
+         style="fill:none;fill-opacity:1;stroke:#c6c6c6;stroke-width:4.5;stroke-dasharray:none;filter:url(#filter2);stroke-opacity:1"
+         id="path1-86"
+         cx="62.624992"
+         cy="135.86667"
+         r="35.833332"
+         inkscape:label="Empty circle hue"
+         inkscape:export-filename="circle_empty.png"
+         inkscape:export-xdpi="26.854628"
+         inkscape:export-ydpi="26.854628" />
+      <circle
+         style="fill:none;fill-opacity:1;stroke:#808080;stroke-width:4;stroke-dasharray:none"
+         id="path1"
+         cx="62.500011"
+         cy="135.83331"
+         r="35.833332"
+         inkscape:label="Empty circle"
+         inkscape:export-filename="circle_empty.png"
+         inkscape:export-xdpi="26.854628"
+         inkscape:export-ydpi="26.854628" />
+    </g>
+    <g
+       id="g2-3"
+       inkscape:label="Displayed circle"
+       transform="translate(90.834703,-75.348641)">
+      <circle
+         style="fill:none;fill-opacity:1;stroke:#c6c6c6;stroke-width:4.5;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter2-9)"
+         id="path1-86-0"
+         cx="62.624992"
+         cy="135.86667"
+         r="35.833332"
+         inkscape:label="Empty circle hue"
+         inkscape:export-filename="circle_empty.png"
+         inkscape:export-xdpi="26.854628"
+         inkscape:export-ydpi="26.854628" />
+      <circle
+         style="fill:#808080;fill-opacity:1;stroke:#808080;stroke-width:4;stroke-dasharray:none"
+         id="path1-0"
+         cx="62.500011"
+         cy="135.83331"
+         r="35.833332"
+         inkscape:label="Circle"
+         inkscape:export-filename="circle_empty.png"
+         inkscape:export-xdpi="26.854628"
+         inkscape:export-ydpi="26.854628" />
+    </g>
+  </g>
+</svg>
