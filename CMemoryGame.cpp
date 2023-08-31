@@ -288,6 +288,10 @@ void CMemoryGame::DoGame(float fElapsedTime)
 		}
 		else 
 		{
+#ifdef CHEAT
+			pxBall = card.px;
+#endif // CHEAT
+
 			vSourcePos = { 0, 0 };
 		}
 		DrawPartialDecal({ mtx.vPos.x - RADIUS, mtx.vPos.y - RADIUS }, { 2 * RADIUS, 2 * RADIUS }, _dcalBalls.get(), vSourcePos, { 300, 300 }, pxBall);
@@ -299,21 +303,23 @@ void CMemoryGame::DoGameEnd(float fElapsedTime)
 {
 	// recalc
 	_fStateTime += fElapsedTime;
-	if (_fStateTime >= 4.0f)
-	{
-		_fStateTime = 0.0f;
-		_nState = STATE_HIGHSCORE_INIT;
-	}
 
 	int nTotal = _score.nScore + (-10) * _score.nElapsedSeconds;
 	if (nTotal < 0)
-	{ 
+	{
 		nTotal = 0;
 	}
+
+	if (_fStateTime >= 4.0f)
+	{
+		_score.nScore = nTotal;
+		_fStateTime = 0.0f;
+		_nState = STATE_HIGHSCORE_INIT;
+	}
+	
 	std::string sScore = "Score:   " + std::to_string(_score.nScore);
 	std::string sTime = "Seconds: " + std::to_string(_score.nElapsedSeconds) + " (-10 points per second)";
 	std::string sTotal = "Total:   " + std::to_string(nTotal);
-	_score.nScore = nTotal;
 
 	// render
 	Clear(olc::BLACK);
