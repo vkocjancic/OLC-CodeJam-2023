@@ -421,7 +421,7 @@ void CMemoryGame::InitializeCards()
 		switch (card.nCard)
 		{
 		case 0:
-			card.px = olc::VERY_DARK_BLUE;
+			card.px = olc::WHITE;
 			break;
 		case 1:
 			card.px = olc::RED;
@@ -442,13 +442,13 @@ void CMemoryGame::InitializeCards()
 			card.px = olc::MAGENTA;
 			break;
 		case 7:
-			card.px = olc::VERY_DARK_MAGENTA;
+			card.px = olc::DARK_CYAN;
 			break;
 		case 8:
 			card.px = olc::DARK_GREY;
 			break;
 		case 9:
-			card.px = olc::DARK_RED;
+			card.px = olc::Pixel(255, 140, 0); // orange
 			break;
 		}
 		_vecCards.push_back(card);
@@ -467,7 +467,7 @@ void CMemoryGame::InitializeMatrix()
 		mtx.vPos.y = _vBallStartPos.y + ((i / MATRIX_COLS) + 1) * 100.0f;
 		mtx.bFocused = false;
 		mtx.bSelected = false;
-		mtx.bShow = true;
+		mtx.bShow = true; 
 
 		do
 		{
