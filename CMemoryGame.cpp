@@ -310,7 +310,7 @@ void CMemoryGame::DoGameEnd(float fElapsedTime)
 		nTotal = 0;
 	}
 
-	if (_fStateTime >= 4.0f)
+	if (_fStateTime >= 5.0f)
 	{
 		_score.nScore = nTotal;
 		_fStateTime = 0.0f;
